@@ -1,0 +1,27 @@
+.container {
+  display: flex;
+  max-width: 64em;
+  margin: 2em auto;
+}
+
+.image {
+  flex: 1 1 16em;
+  padding: 1em;
+}
+
+.image img {
+  display: block;
+  width: 100%;
+  border-radius: 4px;
+}
+
+.text {
+  flex: 1 1 16em;
+  padding: 1em;
+}
+
+.description {
+  line-height: 1.4;
+  opacity: 0.8;
+  margin: 2em 0;
+}

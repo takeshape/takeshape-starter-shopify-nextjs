@@ -1,0 +1,71 @@
+.container {
+  position: relative;
+  background: linear-gradient(180deg, #5539d2, #342380);
+  color: white;
+  fill: white;
+  line-height: 2em;
+}
+
+.hidden {
+  display: none;
+}
+
+.container a {
+  font-weight: bold;
+  text-decoration: underline;
+  text-decoration-color: rgba(255, 255, 255, 0.5);
+  text-decoration-thickness: 0.125em;
+}
+
+.container a:hover {
+  opacity: 0.75;
+}
+
+.inner {
+  display: flex;
+  max-width: 80em;
+  margin: 0 auto;
+  padding: 2em;
+}
+
+.logos {
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.logos > * {
+  margin: 0.5em;
+}
+
+.logo {
+  display: block;
+}
+
+.text {
+  margin: 0 2em;
+}
+
+.container li {
+  margin-bottom: 0.5em;
+}
+
+.comingSoon,
+.button {
+  margin: 0 0.5em;
+  font-weight: bold;
+  padding: 0.25em 0.5em;
+  color: white;
+  background: rgba(255, 255, 255, 0.125);
+  border: 1px solid rgba(255, 255, 255, 0.5);
+  border-radius: 4px;
+}
+
+.button {
+  position: absolute;
+  color: #5539d2;
+  background: rgba(255, 255, 255, 0.75);
+  top: 4em;
+  right: 4em;
+}

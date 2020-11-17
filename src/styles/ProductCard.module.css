@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex-direction: row;
+  border: 1px solid rgba(0, 0, 0, 0.15);
+  border-radius: 4px;
+  overflow: hidden;
+  align-items: flex-start;
+  padding: 0 1em 0 0;
+  margin: 1em 0;
+}
+
+.cardButton {
+  flex: 0 0 auto;
+  margin: 1em 0 0;
+}
+
+.link:hover {
+  color: #333;
+}
+
+.link:visited {
+  color: #666;
+}
+
+.image {
+  flex: 0 0 auto;
+  max-width: 4em;
+  display: block;
+  height: auto;
+  margin: 1em;
+  border-radius: 4px;
+}
+
+.text {
+  flex: 1 1 auto;
+  padding: 1em;
+  line-height: 1.6;
+}
+
+.title {
+  font-weight: bold;
+  margin: 0;
+}
+
+.price {
+  margin: 0;
+}

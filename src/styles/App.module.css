@@ -1,0 +1,16 @@
+.header {
+  padding: 1em;
+  width: 100%;
+  border-bottom: 1px solid #eee;
+  background: #fff;
+  position: sticky;
+  top: 0;
+}
+
+.appName {
+  font-weight: bold;
+}
+
+.appName:hover {
+  opacity: 0.7;
+}
