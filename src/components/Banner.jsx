@@ -54,8 +54,8 @@ const Banner = () => {
               </a>
             </li>
             <li>
-              <ComingSoon /> Follow our walkthrough article to build this
-              yourself
+              <a href='https://www.takeshape.io/articles/building-a-rich-e-commerce-experience-on-the-jamstack-with-takeshape-shopify-and-next-js/'>Follow our walkthrough article to build this
+              yourself</a>
             </li>
           </ol>
         </div>
