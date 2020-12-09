@@ -2,8 +2,6 @@ import { useState } from "react";
 import Image from "next/image";
 import styles from "../styles/Banner.module.css";
 
-const ComingSoon = () => <span className={styles.comingSoon}>Coming soon</span>;
-
 const Banner = () => {
   const [visible, setVisible] = useState(true);
   return (
@@ -33,11 +31,6 @@ const Banner = () => {
           <p></p>
           <p>Interested in building something like this?</p>
           <ol>
-            <li>
-              <a href='mailto:contact@takeshape.io?subject=Mesh%20Beta%20Request'>
-                Request early access to the TakeShape Mesh beta
-              </a>
-            </li>
             <li>
               <a href='https://github.com/takeshape/takeshape-starter-shopify-nextjs'>
                 Explore the repository in GitHub
