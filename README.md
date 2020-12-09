@@ -6,10 +6,9 @@ This project shows off how connecting [Shopify](https://shopify.com) with [TakeS
 
 To learn more and get started:
 
-1. [Apply to join the TakeShape Mesh beta](mailto:contact@takeshape.io)
-2. Explore the repo and copy it to your own GitHub account
-3. Deploy this project to TakeShape and Vercel
-4. Read our walkthrough to learn how we built this project from scratch
+1. Explore the repo and copy it to your own GitHub account
+2. Deploy this project to [TakeShape](https://app.takeshape.io/add-to-takeshape?repo=https://github.com/takeshape/takeshape-starter-shopify-nextjs/tree/trunk/.takeshape/pattern) and [Vercel](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Ftakeshape%2Ftakeshape-starter-shopify-nextjs&env=TAKESHAPE_TOKEN,TAKESHAPE_ENDPOINT&envDescription=Provide%20credentials%20for%20your%20TakeShape%20project&demo-title=Lookbook&demo-description=A%20statically-generated%20site%20using%20Next.js%2C%20showing%20off%20data%20from%20a%20TakeShape%20project%20connected%20to%20Shopify.&demo-url=https%3A%2F%2Fshape-shop-next.vercel.app%2F)
+3. [Read our walkthrough](https://www.takeshape.io/articles/building-a-rich-e-commerce-experience-on-the-jamstack-with-takeshape-shopify-and-next-js/) to learn how we built this project from scratch
 
 ## Quickstart
 
