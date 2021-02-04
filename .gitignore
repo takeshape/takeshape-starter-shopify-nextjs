@@ -32,3 +32,8 @@ yarn-error.log*
 
 # vercel
 .vercel
+
+# takeshape
+.tsgrc
+.graphqlconfig
+tsg-project.graphql

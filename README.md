@@ -28,9 +28,9 @@ To learn more and get started:
    $ npm run setup
    ```
 
-3. In your new TakeShape project, connect to your Shopify account. (Note: You will need access to the TakeShape Mesh beta in order to connect services. [Contact us](mailto:contact@takeshape.io) to request access.)
+3. In your new TakeShape project, connect to your Shopify account.
 
-   - Click on the project name in the upper left > Services > Connect Service.
+   - Click on the project name in the upper left > Schema > Connect Service.
    - Provide the URL of your Shopify store, then click save. You'll be taken through an OAuth flow to authorize the TakeShape app with your Shopify account.
 
 4. Create an API Key with `Dev` permissions in your TakeShape project.
@@ -60,6 +60,24 @@ To learn more and get started:
    ```console
    $ npm install -G vercel
    ```
+
+## Add GraphQL API support
+
+You can install a GraphQL extension for your code editor and use it with your TakeShape project's GraphQL API.
+
+- If you're using VSCode, we recommend using [the official GraphQL extension](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql).
+- If you're using JetBrains, we recommend using [graphql-config](https://graphcool.github.io/graphql-config/).
+
+First, install the TakeShape CLI and run the `init` command in the project root:
+
+```bash
+npm i -g @takeshape/cli
+takeshape init
+```
+
+This will download a `.graphql` file with your project's types and queries. This will power features like validation, autocomplete suggestions, and built-in definitions.
+
+If you ever need to update your schema, you can run `takeshape schema` to download an updated version.
 
 ## Reach out
 
