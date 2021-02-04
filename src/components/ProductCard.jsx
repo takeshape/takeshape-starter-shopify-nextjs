@@ -1,5 +1,4 @@
 import Link from "next/link";
-import { getImageUrl } from "@takeshape/routing";
 import styles from "../styles/ProductCard.module.css";
 import AddToCart from "./AddToCart";
 
@@ -16,17 +15,20 @@ export function getProductPrice(product) {
   return price;
 }
 
-const ProductCard = ({ _id, name, image, productId, product }) => {
+export function getProductImage(product) {
+  const node = product.images?.edges[0]?.node
+  return node?.transformedSrc || node?.originalSrc
+}
+
+const ProductCard = ({ _id, productId, product }) => {
   const { title } = product;
   const price = getProductPrice(product);
+  const image = getProductImage(product);
   return (
     <div className={styles.container}>
       {image && (
         <ProductLink id={_id}>
-          <img
-            className={styles.image}
-            src={getImageUrl(image.path, { w: 300, h: 300, fit: "crop" })}
-          />
+          <img className={styles.image} src={image} />
         </ProductLink>
       )}
       <div className={styles.text}>

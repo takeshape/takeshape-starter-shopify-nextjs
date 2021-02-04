@@ -11,7 +11,7 @@ const Look = ({ photo, text, products }) => {
         <img src={getImageUrl(photo.path, { w: 900, h: 1200, fit: "crop" })} />
       </div>
       <div className={styles.details}>
-        <p className={styles.text}>{text}</p>
+        <div className={styles.text} dangerouslySetInnerHTML={{__html: text}} />
         <div className={styles.products}>
           {products.map((product) => (
             <ProductCard {...product} key={product._id} />
@@ -47,42 +47,36 @@ export async function getStaticProps() {
   const res = { props: {} };
   try {
     const query = `
-      fragment image on Asset {
-        title
-        description
-        path
-      }
-      
-      fragment product on Product {
-        _id
-        name
-        image {
-          ...image
-        }
-        productId: takeshapeIoShopId
-        product: takeshapeIoShop {
-          title
-          variants(first: 1) {
-            edges {
-              node {
-                price
-              }
-            }
-          }
-        }
-      }
-      
-      query HomepageQuery {
+      query {
         looks: getLookList {
           items {
             _id
             name
-            text
+            text: textHtml
             photo {
-              ...image
+              path
             }
             products {
-              ...product
+              _id
+              name
+              productId: takeshapeIoShopId
+              product: takeshapeIoShop {
+                title
+                variants(first: 1) {
+                  edges {
+                    node {
+                      price
+                    }
+                  }
+                }
+                images(first: 1) {
+                  edges {
+                    node {
+                      transformedSrc(crop: CENTER, maxHeight: 400, maxWidth: 400)
+                    }
+                  }
+                }
+              }
             }
           }
         }

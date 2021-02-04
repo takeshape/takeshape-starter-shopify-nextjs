@@ -1,19 +1,18 @@
 import Error from "next/error";
-import TakeShape, { getImageUrl } from "../../takeshape.client";
+import TakeShape from "../../takeshape.client";
 import styles from "../../styles/Product.module.css";
 import AddToCart from "../../components/AddToCart";
-import { getProductPrice } from "../../components/ProductCard";
+import { getProductPrice, getProductImage } from "../../components/ProductCard";
 
-const Product = ({ image, product, productId }) => {
+const Product = ({ product, productId }) => {
   const { title } = product;
   const price = getProductPrice(product);
+  const image = getProductImage(product);
   return (
     <div className={styles.container}>
       {image && (
         <div className={styles.image}>
-          <img
-            src={getImageUrl(image.path, { w: 800, h: 1200, fit: "crop" })}
-          />
+          <img src={image} />
         </div>
       )}
       <div className={styles.text}>
@@ -46,15 +45,17 @@ export async function getStaticProps({ params }) {
     const query = `
       query singleProduct($id: ID!) {
         product: getProduct(_id: $id) {
-          image {
-            path
-            title
-            description
-          }
           productId: takeshapeIoShopId
           product: takeshapeIoShop {
             title
             descriptionHtml
+            images(first: 1) {
+              edges {
+                node {
+                  transformedSrc(crop: CENTER, maxHeight: 1200, maxWidth: 800)
+                }
+              }
+            }
             variants(first: 1) {
               edges {
                 node {
