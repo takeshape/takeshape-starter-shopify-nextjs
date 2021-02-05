@@ -38,7 +38,7 @@ To learn more and get started:
    - Click on the project name in the upper left > API Keys > New API Key. Save your
      new API key somewhere.
    - Copy and save the API endpoint provided on the API Keys page. It looks like this:
-     `https://api.takeshape.io/project/<your project ID>/graphql`
+     `https://api.takeshape.io/project/<your project ID>/v3/graphql`
 
 5. Back in your Next.js project, create a `.env.local` file in your project with following lines:
 
