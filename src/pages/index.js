@@ -4,7 +4,7 @@ import styles from "../styles/Home.module.css";
 import ProductCard from "../components/ProductCard";
 import AddToCart from "../components/AddToCart";
 
-const Look = ({ photo, text, products }) => {
+const Look = ({ photo, text, products, shopify, checkoutId, setCartSize }) => {
   return (
     <div className={styles.look}>
       <div className={styles.photo}>
@@ -14,11 +14,14 @@ const Look = ({ photo, text, products }) => {
         <div className={styles.text} dangerouslySetInnerHTML={{__html: text}} />
         <div className={styles.products}>
           {products.map((product) => (
-            <ProductCard {...product} key={product._id} />
+            <ProductCard {...product} key={product._id} shopify={shopify} checkoutId={checkoutId} setCartSize={setCartSize} />
           ))}
           <AddToCart
             label='Add all to cart'
             products={products.map((product) => product.productId)}
+            shopify={shopify}
+            checkoutId={checkoutId}
+            setCartSize={setCartSize}
           />
         </div>
       </div>
@@ -27,7 +30,8 @@ const Look = ({ photo, text, products }) => {
 };
 
 export default function Home(props) {
-  const { data, errors } = props;
+  const { data, errors, shopify, checkoutId, setCartSize } = props;
+
   if (errors) {
     return <Error statusCode={500} />;
   } else if (!data) {
@@ -37,7 +41,7 @@ export default function Home(props) {
   return (
     <div className={styles.container}>
       {looks.map((look) => (
-        <Look key={look._id} {...look} />
+        <Look key={look._id} shopify={shopify} checkoutId={checkoutId} setCartSize={setCartSize} {...look} />
       ))}
     </div>
   );
@@ -65,6 +69,7 @@ export async function getStaticProps() {
                 variants(first: 1) {
                   edges {
                     node {
+                      title
                       price
                     }
                   }

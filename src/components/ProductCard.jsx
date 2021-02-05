@@ -8,35 +8,29 @@ const ProductLink = ({ id, children }) => (
   </Link>
 );
 
-export function getProductPrice(product) {
-  const { variants } = product;
-  const firstNode = variants?.edges[0]?.node;
-  const price = firstNode?.price;
-  return price;
+export function getProductVariant(product) {
+  return {
+    ...product.variants?.edges[0]?.node,
+    title: product.title
+  };
 }
 
-export function getProductImage(product) {
-  const node = product.images?.edges[0]?.node
-  return node?.transformedSrc || node?.originalSrc
-}
-
-const ProductCard = ({ _id, productId, product }) => {
+const ProductCard = ({ _id, product, shopify, checkoutId, setCartSize }) => {
   const { title } = product;
-  const price = getProductPrice(product);
-  const image = getProductImage(product);
+  const productVariant = getProductVariant(product);
   return (
     <div className={styles.container}>
-      {image && (
+      {productVariant.image && (
         <ProductLink id={_id}>
-          <img className={styles.image} src={image} />
+          <img className={styles.image} src={productVariant.image} />
         </ProductLink>
       )}
       <div className={styles.text}>
         <ProductLink id={_id}>
           <p className={styles.title}>{title}</p>
         </ProductLink>
-        {price && <p className={styles.price}>${price}</p>}
-        <AddToCart products={[productId]} />
+        {productVariant.price && <p className={styles.price}>${productVariant.price}</p>}
+        <AddToCart products={[productVariant]} shopify={shopify} checkoutId={checkoutId} setCartSize={setCartSize} />
       </div>
     </div>
   );
