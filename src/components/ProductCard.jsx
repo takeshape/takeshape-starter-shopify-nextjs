@@ -9,9 +9,11 @@ const ProductLink = ({ id, children }) => (
 );
 
 export function getProductVariant(product) {
+  const imageNode = product.images?.edges[0]?.node;
   return {
     ...product.variants?.edges[0]?.node,
-    title: product.title
+    title: product.title,
+    image: imageNode?.transformedSrc || node?.originalSrc
   };
 }
 
