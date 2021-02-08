@@ -1,4 +1,6 @@
+import AppContext from '../context/AppContext'
 import styles from "../styles/AddToCart.module.css";
+import { useContext } from "react";
 
 function addToCart(products, quantity, shopify, checkoutId, setCartSize) {
 
@@ -23,7 +25,9 @@ function addToCart(products, quantity, shopify, checkoutId, setCartSize) {
   });
 }
 
-const AddToCart = ({ products, label = "Add to cart", shopify, checkoutId, setCartSize }) => {
+const AddToCart = ({ products, label = "Add to cart"}) => {
+  const { shopify, checkoutId, setCartSize } = useContext(AppContext);
+
   const onClickHandler = () => addToCart(products, 1, shopify, checkoutId, setCartSize);
   return (
     <button className={styles.button} onClick={onClickHandler}>

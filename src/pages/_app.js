@@ -2,10 +2,13 @@ import Link from "next/link";
 import "../styles/globals.css";
 import styles from "../styles/App.module.css";
 import Banner from "../components/Banner";
+import AppContext from '../context/AppContext';
 import Client from 'shopify-buy';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useContext } from "react";
 
-const Header = ({checkoutUrl, cartSize}) => {
+const Header = () => {
+  const { checkoutUrl, cartSize } = useContext(AppContext);
+
   let cartText = null;
   if (cartSize < 1) {
     cartText = <span>No items in cart</span>
@@ -52,8 +55,8 @@ function MyApp({ Component, pageProps }) {
   // Fetch or create checkout
   useEffect(() => {
     const client = Client.buildClient({
-      domain: 'takeshape-io-shop.myshopify.com',
-      storefrontAccessToken: 'd18c85d432999a11b615fe285aaaef4b'
+      domain: process.env.NEXT_PUBLIC_SHOPIFY_DOMAIN,
+      storefrontAccessToken: process.env.NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN
     });
     setShopify(client);
 
@@ -74,15 +77,15 @@ function MyApp({ Component, pageProps }) {
   if (shopify === null || checkoutId === null) {
     content = null;
   } else {
-    content = <Component shopify={shopify} checkoutId={checkoutId} setCartSize={setCartSize} {...pageProps} />;
+    content = <Component {...pageProps} />;
   }
 
   return (
-    <>
+    <AppContext.Provider value={{shopify, checkoutId, checkoutUrl, cartSize, setCartSize}}>
       <Banner />
-      <Header checkoutUrl={checkoutUrl} cartSize={cartSize} />
+      <Header />
       {content}
-    </>
+    </AppContext.Provider>
   );
 }
 

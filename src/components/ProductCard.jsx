@@ -15,7 +15,7 @@ export function getProductVariant(product) {
   };
 }
 
-const ProductCard = ({ _id, product, shopify, checkoutId, setCartSize }) => {
+const ProductCard = ({ _id, product }) => {
   const { title } = product;
   const productVariant = getProductVariant(product);
   return (
@@ -30,7 +30,7 @@ const ProductCard = ({ _id, product, shopify, checkoutId, setCartSize }) => {
           <p className={styles.title}>{title}</p>
         </ProductLink>
         {productVariant.price && <p className={styles.price}>${productVariant.price}</p>}
-        <AddToCart products={[productVariant]} shopify={shopify} checkoutId={checkoutId} setCartSize={setCartSize} />
+        <AddToCart products={[productVariant]} />
       </div>
     </div>
   );

@@ -4,7 +4,7 @@ import styles from "../styles/Home.module.css";
 import ProductCard from "../components/ProductCard";
 import AddToCart from "../components/AddToCart";
 
-const Look = ({ photo, text, products, shopify, checkoutId, setCartSize }) => {
+const Look = ({ photo, text, products }) => {
   return (
     <div className={styles.look}>
       <div className={styles.photo}>
@@ -14,14 +14,11 @@ const Look = ({ photo, text, products, shopify, checkoutId, setCartSize }) => {
         <div className={styles.text} dangerouslySetInnerHTML={{__html: text}} />
         <div className={styles.products}>
           {products.map((product) => (
-            <ProductCard {...product} key={product._id} shopify={shopify} checkoutId={checkoutId} setCartSize={setCartSize} />
+            <ProductCard {...product} key={product._id} />
           ))}
           <AddToCart
             label='Add all to cart'
             products={products.map((product) => product.productId)}
-            shopify={shopify}
-            checkoutId={checkoutId}
-            setCartSize={setCartSize}
           />
         </div>
       </div>
@@ -30,7 +27,7 @@ const Look = ({ photo, text, products, shopify, checkoutId, setCartSize }) => {
 };
 
 export default function Home(props) {
-  const { data, errors, shopify, checkoutId, setCartSize } = props;
+  const { data, errors } = props;
 
   if (errors) {
     return <Error statusCode={500} />;
@@ -41,7 +38,7 @@ export default function Home(props) {
   return (
     <div className={styles.container}>
       {looks.map((look) => (
-        <Look key={look._id} shopify={shopify} checkoutId={checkoutId} setCartSize={setCartSize} {...look} />
+        <Look key={look._id} {...look} />
       ))}
     </div>
   );
