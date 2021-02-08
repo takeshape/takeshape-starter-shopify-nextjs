@@ -1,6 +1,7 @@
 .button {
   appearance: none;
   font-family: inherit;
+  font-weight: 600;
   font-size: inherit;
   color: white;
   background: #303030;

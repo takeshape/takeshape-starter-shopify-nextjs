@@ -5,18 +5,15 @@
   background: #fff;
   position: sticky;
   top: 0;
-}
-
-.checkout {
-  float: right;
-}
-
-.checkoutLink {
-  text-decoration: underline;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .appName {
-  font-weight: bold;
+  font-size: 1.1em;
+  font-weight: 800;
+  text-transform: uppercase;
 }
 
 .appName:hover, .checkoutLink:hover {
