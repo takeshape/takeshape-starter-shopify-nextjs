@@ -4,7 +4,18 @@ import styles from "../styles/Home.module.css";
 import ProductCard from "../components/ProductCard";
 import AddToCart from "../components/AddToCart";
 
+// Flatten product, image, and variant info into one useful object
+export function squashProduct(product) {
+  const imageNode = product.product.images?.edges[0]?.node;
+  return {
+    ...product.product.variants?.edges[0]?.node,
+    image: imageNode?.transformedSrc || imageNode?.originalSrc,
+    ...product
+  };
+}
+
 const Look = ({ photo, text, products }) => {
+  products = products.map(squashProduct);
   return (
     <div className={styles.look}>
       <div className={styles.photo}>
@@ -18,7 +29,7 @@ const Look = ({ photo, text, products }) => {
           ))}
           <AddToCart
             label='Add all to cart'
-            products={products.map((product) => product.productId)}
+            products={products}
           />
         </div>
       </div>
@@ -68,6 +79,7 @@ export async function getStaticProps() {
                     node {
                       title
                       price
+                      storefrontId
                     }
                   }
                 }
