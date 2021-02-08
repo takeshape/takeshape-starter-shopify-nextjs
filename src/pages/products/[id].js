@@ -2,22 +2,21 @@ import Error from "next/error";
 import TakeShape from "../../takeshape.client";
 import styles from "../../styles/Product.module.css";
 import AddToCart from "../../components/AddToCart";
-import { getProductPrice, getProductImage } from "../../components/ProductCard";
+import { getProductVariant } from "../../components/ProductCard";
 
 const Product = ({ product, productId }) => {
   const { title } = product;
-  const price = getProductPrice(product);
-  const image = getProductImage(product);
+  const variant = getProductVariant(product);
   return (
     <div className={styles.container}>
-      {image && (
+      {variant.image && (
         <div className={styles.image}>
-          <img src={image} />
+          <img src={variant.image} />
         </div>
       )}
       <div className={styles.text}>
         <h2>{title}</h2>
-        <p>${price}</p>
+        <p>${variant.price}</p>
         <AddToCart products={[productId]} />
         <div
           className={styles.description}

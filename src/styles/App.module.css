@@ -7,10 +7,18 @@
   top: 0;
 }
 
+.checkout {
+  float: right;
+}
+
+.checkoutLink {
+  text-decoration: underline;
+}
+
 .appName {
   font-weight: bold;
 }
 
-.appName:hover {
+.appName:hover, .checkoutLink:hover {
   opacity: 0.7;
 }

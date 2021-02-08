@@ -40,11 +40,19 @@ To learn more and get started:
    - Copy and save the API endpoint provided on the API Keys page. It looks like this:
      `https://api.takeshape.io/project/<your project ID>/v3/graphql`
 
+5. Copy your storefront access token and domain
+
+This example uses a [Shopify Private App](https://shopify.dev/docs/storefront-api/getting-started#private-app).
+You'll need the private app's storefront access token and the store's domain (in the
+format your-shop-domain.myshopify.com)
+
 5. Back in your Next.js project, create a `.env.local` file in your project with following lines:
 
    ```inputrc
    TAKESHAPE_ENDPOINT=<takeshape-api-endpoint-you-copied>
    TAKESHAPE_TOKEN=<takeshape-api-key-you-copied>
+   NEXT_PUBLIC_SHOPIFY_STOREFRONT_ACCESS_TOKEN=<storefront-access-token-you-copied>
+   NEXT_PUBLIC_SHOPIFY_DOMAIN=<shopify-domain-you-copied>
    ```
 
 6. Finally, start your local development site at `http://localhost:3000`

@@ -28,6 +28,7 @@ const Look = ({ photo, text, products }) => {
 
 export default function Home(props) {
   const { data, errors } = props;
+
   if (errors) {
     return <Error statusCode={500} />;
   } else if (!data) {
@@ -65,6 +66,7 @@ export async function getStaticProps() {
                 variants(first: 1) {
                   edges {
                     node {
+                      title
                       price
                     }
                   }
