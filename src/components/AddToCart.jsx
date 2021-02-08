@@ -4,22 +4,19 @@ import { useContext } from "react";
 
 function addToCart(products, quantity, shopify, checkoutId, setCartSize) {
 
-  // TODO create this from the products arg after the storefront id is in the query
-  const lineItemsToAdd = [
-    {
-      variantId: 'Z2lkOi8vc2hvcGlmeS9Qcm9kdWN0VmFyaWFudC8zNzExMDI0NDIxMjkwMw==',
-      quantity
-    }
-  ];
+  const lineItemsToAdd = products.map(product => ({
+    variantId: product.storefrontId,
+    quantity
+  }));
   
   shopify.checkout.addLineItems(checkoutId, lineItemsToAdd).then((checkout) => {
     setCartSize(checkout.lineItems.length)
 
     if (products.length === 1) {
-      alert(`Added ${products[0].title} to the cart!`);
+      alert(`Added ${products[0].name} to the cart!`);
     } else {
       alert(
-        `Added ${products.length} products (${products.map(product => product.title).join(", ")}) to the cart!`
+        `Added ${products.length} products (${products.map(product => product.name).join(", ")}) to the cart!`
       );
     }
   });

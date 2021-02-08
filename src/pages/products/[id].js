@@ -2,22 +2,21 @@ import Error from "next/error";
 import TakeShape from "../../takeshape.client";
 import styles from "../../styles/Product.module.css";
 import AddToCart from "../../components/AddToCart";
-import { getProductVariant } from "../../components/ProductCard";
+import { squashProduct } from "..";
 
-const Product = ({ product, productId }) => {
-  const { title } = product;
-  const variant = getProductVariant(product);
+const Product = (product) => {
+  product = squashProduct(product);
   return (
     <div className={styles.container}>
-      {variant.image && (
+      {product.image && (
         <div className={styles.image}>
-          <img src={variant.image} />
+          <img src={product.image} />
         </div>
       )}
       <div className={styles.text}>
-        <h2>{title}</h2>
-        <p>${variant.price}</p>
-        <AddToCart products={[productId]} />
+        <h2>{product.name}</h2>
+        <p>${product.price}</p>
+        <AddToCart products={[product]} />
         <div
           className={styles.description}
           dangerouslySetInnerHTML={{ __html: product.descriptionHtml }}
@@ -44,6 +43,8 @@ export async function getStaticProps({ params }) {
     const query = `
       query singleProduct($id: ID!) {
         product: getProduct(_id: $id) {
+          _id
+          name
           productId: takeshapeIoShopId
           product: takeshapeIoShop {
             title
@@ -59,6 +60,7 @@ export async function getStaticProps({ params }) {
               edges {
                 node {
                   price
+                  storefrontId
                 }
               }
             }

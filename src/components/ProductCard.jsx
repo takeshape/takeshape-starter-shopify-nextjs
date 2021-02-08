@@ -8,31 +8,20 @@ const ProductLink = ({ id, children }) => (
   </Link>
 );
 
-export function getProductVariant(product) {
-  const imageNode = product.images?.edges[0]?.node;
-  return {
-    ...product.variants?.edges[0]?.node,
-    title: product.title,
-    image: imageNode?.transformedSrc || node?.originalSrc
-  };
-}
-
-const ProductCard = ({ _id, product }) => {
-  const { title } = product;
-  const productVariant = getProductVariant(product);
+const ProductCard = (product) => {
   return (
     <div className={styles.container}>
-      {productVariant.image && (
-        <ProductLink id={_id}>
-          <img className={styles.image} src={productVariant.image} />
+      {product.image && (
+        <ProductLink id={product._id}>
+          <img className={styles.image} src={product.image} />
         </ProductLink>
       )}
       <div className={styles.text}>
-        <ProductLink id={_id}>
-          <p className={styles.title}>{title}</p>
+        <ProductLink id={product._id}>
+          <p className={styles.title}>{product.name}</p>
         </ProductLink>
-        {productVariant.price && <p className={styles.price}>${productVariant.price}</p>}
-        <AddToCart products={[productVariant]} />
+        {product.price && <p className={styles.price}>${product.price}</p>}
+        <AddToCart products={[product]} />
       </div>
     </div>
   );
