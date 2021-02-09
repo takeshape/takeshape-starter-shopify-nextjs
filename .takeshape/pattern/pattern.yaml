@@ -1,7 +1,7 @@
 name: Shopify Lookbook
-description: "This project pattern shows how to use TakeShape and Shopify together to create a rich e-commerce experience"
-icon: shopping-bag
-color: "#95bf46"
+description: 'Show off your products in a fashionable catalog'
+icon: shopping-cart
+color: '#000000'
 categories:
-  - e-commerce
-  - services
+  - ecommerce
+  - shopify
