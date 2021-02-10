@@ -5,7 +5,11 @@ import Banner from "../components/Banner";
 import Cart from '../components/Cart';
 import CartContext from '../context/CartContext';
 import Client from 'shopify-buy';
-import { useState, useEffect } from "react";
+import { useState, useEffect, useCallback } from "react";
+
+function getTotalQuantity(lineItems) {
+  return lineItems.reduce((total, item) => total + item.quantity, 0)
+}
 
 const Header = () => {
   return <header className={styles.header}>
@@ -17,7 +21,7 @@ const Header = () => {
 };
 
 
-function initCheckout(checkout, setCheckoutId, setCheckoutUrl, setCartSize) {
+function initCheckout(checkout, setCheckoutId, setCheckoutUrl, setCart) {
   try {
     localStorage.setItem('shopifyCheckoutId', checkout.id);
   } catch (e) {
@@ -25,7 +29,7 @@ function initCheckout(checkout, setCheckoutId, setCheckoutUrl, setCartSize) {
   }
   setCheckoutId(checkout.id);
   setCheckoutUrl(checkout.webUrl);
-  setCartSize(checkout.lineItems.length);
+  setCart(checkout.lineItems);
 }
 
 function MyApp({ Component, pageProps }) {
@@ -34,6 +38,18 @@ function MyApp({ Component, pageProps }) {
   const [checkoutId, setCheckoutId] = useState(null);
   const [checkoutUrl, setCheckoutUrl] = useState(null);
   const [cartSize, setCartSize] = useState(null);
+  const [lineItems, setLineItems] = useState(null);
+
+  const setCart = useCallback((lineItems) => {
+    setCartSize(getTotalQuantity(lineItems));
+    setLineItems(lineItems);
+  });
+
+  const removeLineItem = useCallback((lineItem) => {
+    shopify.checkout.removeLineItems(checkoutId, [lineItem.id]).then((checkout) => {
+      setCart(checkout.lineItems);
+    });
+  });
 
   // Fetch or create checkout
   useEffect(() => {
@@ -47,11 +63,11 @@ function MyApp({ Component, pageProps }) {
 
     if (existingCheckoutId) {
       client.checkout.fetch(existingCheckoutId).then(checkout => {
-        initCheckout(checkout, setCheckoutId, setCheckoutUrl, setCartSize);
+        initCheckout(checkout, setCheckoutId, setCheckoutUrl, setCart);
       });
     } else {
       client.checkout.create().then(checkout => {
-        initCheckout(checkout, setCheckoutId, setCheckoutUrl, setCartSize);
+        initCheckout(checkout, setCheckoutId, setCheckoutUrl, setCart);
       });
     }
   }, []);
@@ -64,7 +80,7 @@ function MyApp({ Component, pageProps }) {
   }
 
   return (
-    <CartContext.Provider value={{shopify, checkoutId, checkoutUrl, cartSize, setCartSize}}>
+    <CartContext.Provider value={{shopify, checkoutId, checkoutUrl, cartSize, setCart, lineItems, removeLineItem}}>
       <Banner />
       <Header />
       {content}
