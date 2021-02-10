@@ -1,6 +1,10 @@
-import AppContext from '../context/AppContext'
+import React, { useContext } from "react";
+import CartContext from '../context/CartContext'
 import styles from "../styles/AddToCart.module.css";
-import { useContext } from "react";
+
+function getTotalQuantity(lineItems) {
+  return lineItems.reduce((total, item) => total + item.quantity, 0)
+}
 
 function addToCart(products, quantity, shopify, checkoutId, setCartSize) {
 
@@ -10,20 +14,12 @@ function addToCart(products, quantity, shopify, checkoutId, setCartSize) {
   }));
   
   shopify.checkout.addLineItems(checkoutId, lineItemsToAdd).then((checkout) => {
-    setCartSize(checkout.lineItems.length)
-
-    if (products.length === 1) {
-      alert(`Added ${products[0].name} to the cart!`);
-    } else {
-      alert(
-        `Added ${products.length} products (${products.map(product => product.name).join(", ")}) to the cart!`
-      );
-    }
+    setCartSize(getTotalQuantity(checkout.lineItems))
   });
 }
 
 const AddToCart = ({ products, label = "Add to cart"}) => {
-  const { shopify, checkoutId, setCartSize } = useContext(AppContext);
+  const { shopify, checkoutId, setCartSize } = useContext(CartContext);
 
   const onClickHandler = () => addToCart(products, 1, shopify, checkoutId, setCartSize);
   return (

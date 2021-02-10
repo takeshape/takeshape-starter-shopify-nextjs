@@ -1,4 +1,4 @@
-import { useState } from "react";
+import React, { useState } from "react";
 import Image from "next/image";
 import styles from "../styles/Banner.module.css";
 
@@ -21,9 +21,8 @@ const Banner = () => {
             here.
           </p>
           <p>
-            We built this sample project to show off TakeShape's experimental
-            new Shopify integration. 🛍 &nbsp; Now you can use TakeShape to
-            create rich e-commerce experiences on the Jamstack with the services
+            We built this sample project to show off TakeShape's Shopify integration. 🛍 &nbsp;
+            Now you can use TakeShape to create rich e-commerce experiences on the Jamstack with the services
             you're already using. This project is built with{" "}
             <a href='https://nextjs.org'>Next.js</a> and deployed to{" "}
             <a href='https://vercel.com'>Vercel</a>.

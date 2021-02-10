@@ -2,34 +2,17 @@ import Link from "next/link";
 import "../styles/globals.css";
 import styles from "../styles/App.module.css";
 import Banner from "../components/Banner";
-import AppContext from '../context/AppContext';
+import Cart from '../components/Cart';
+import CartContext from '../context/CartContext';
 import Client from 'shopify-buy';
-import { useState, useEffect, useContext } from "react";
+import { useState, useEffect } from "react";
 
 const Header = () => {
-  const { checkoutUrl, cartSize } = useContext(AppContext);
-
-  let cartText = null;
-  if (cartSize < 1) {
-    cartText = <span>No items in cart</span>
-  } else {
-    cartText = <span>{cartSize} {cartSize === 1 ? 'item' : 'items'} in cart{' '}</span>
-  }
-
-  let checkout = null;
-  if (checkoutUrl !== null && cartSize !== null) {
-    checkout = <span className={styles.checkout}>
-        {cartText}
-        {cartSize > 0 && <a className={styles.checkoutLink} href={checkoutUrl} target="_blank">Check Out</a>}
-      </span>;
-  }
-
   return <header className={styles.header}>
     <Link href='/'>
       <a className={styles.appName}>Lookbook</a>
     </Link>
-    {' '}
-    {checkout}
+    <Cart />
   </header>
 };
 
@@ -81,11 +64,11 @@ function MyApp({ Component, pageProps }) {
   }
 
   return (
-    <AppContext.Provider value={{shopify, checkoutId, checkoutUrl, cartSize, setCartSize}}>
+    <CartContext.Provider value={{shopify, checkoutId, checkoutUrl, cartSize, setCartSize}}>
       <Banner />
       <Header />
       {content}
-    </AppContext.Provider>
+    </CartContext.Provider>
   );
 }
 
