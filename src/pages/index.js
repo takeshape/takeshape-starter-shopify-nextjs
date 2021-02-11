@@ -8,6 +8,7 @@ import AddToCart from "../components/AddToCart";
 export function squashProduct(product) {
   const imageNode = product.product.images?.edges[0]?.node;
   return {
+    ...product.product,
     ...product.product.variants?.edges[0]?.node,
     image: imageNode?.transformedSrc || imageNode?.originalSrc,
     ...product

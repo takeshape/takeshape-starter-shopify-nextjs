@@ -22,6 +22,6 @@
 
 .description {
   line-height: 1.4;
-  opacity: 0.8;
+  color: hsl(0,0,20%);
   margin: 2em 0;
 }
