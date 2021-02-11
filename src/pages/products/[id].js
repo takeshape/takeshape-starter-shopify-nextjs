@@ -1,5 +1,5 @@
 import Error from "next/error";
-import TakeShape from "../../takeshape.client";
+import TakeShape, { gql } from "../../takeshape.client";
 import styles from "../../styles/Product.module.css";
 import AddToCart from "../../components/AddToCart";
 import { squashProduct } from "..";
@@ -38,9 +38,14 @@ export default function ProductPage(props) {
 
 export async function getStaticProps({ params }) {
   const { id } = params;
-  const res = { props: {} };
+  const res = {
+    props: {
+      data: null,
+      errors: null
+    }
+  };
   try {
-    const query = `
+    const query = gql`
       query singleProduct($id: ID!) {
         product: getProduct(_id: $id) {
           _id
@@ -69,11 +74,11 @@ export async function getStaticProps({ params }) {
       }
     `;
     const variables = { id };
-    const data = await TakeShape.graphql(query, variables);
-    res.props = data;
+    res.props.data = await TakeShape.graphql(query, variables);
     return res;
   } catch (error) {
     console.error(error);
+    res.props.errors = [error.message];
   }
   return res;
 }
@@ -81,7 +86,7 @@ export async function getStaticProps({ params }) {
 export async function getStaticPaths() {
   let paths = [];
   try {
-    const query = `
+    const query = gql`
       query {
         products: getProductList {
           items {
@@ -90,9 +95,9 @@ export async function getStaticPaths() {
         }
       }
     `;
-    const res = await TakeShape.graphql(query);
+    const data = await TakeShape.graphql(query);
     const createPath = (item) => ({ params: { id: item._id } });
-    paths = res.data.products.items.map(createPath);
+    paths = data.products.items.map(createPath);
   } catch (error) {
     console.error(error);
   }

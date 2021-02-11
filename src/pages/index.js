@@ -1,5 +1,5 @@
 import Error from "next/error";
-import TakeShape, { getImageUrl } from "../takeshape.client";
+import TakeShape, { gql, getImageUrl } from "../takeshape.client";
 import styles from "../styles/Home.module.css";
 import ProductCard from "../components/ProductCard";
 import AddToCart from "../components/AddToCart";
@@ -40,7 +40,7 @@ const Look = ({ photo, text, products }) => {
 export default function Home(props) {
   const { data, errors } = props;
 
-  if (errors) {
+  if (errors && errors.length > 0) {
     return <Error statusCode={500} />;
   } else if (!data) {
     return <Error statusCode={404} />;
@@ -56,9 +56,14 @@ export default function Home(props) {
 }
 
 export async function getStaticProps() {
-  const res = { props: {} };
+  const res = {
+    props: {
+      data: null,
+      errors: []
+    } 
+  };
   try {
-    const query = `
+    const query = gql`
       query {
         looks: getLookList {
           items {
@@ -96,12 +101,10 @@ export async function getStaticProps() {
         }
       }
     `;
-    const data = await TakeShape.graphql(query);
-    res.props = data;
-    return res;
+    res.props.data = await TakeShape.graphql(query);
   } catch (error) {
     console.error(error);
-    res.props = { errors: [error] };
+    res.props.errors = [error];
   }
   return res;
 }
