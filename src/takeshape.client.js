@@ -1,24 +1,33 @@
-export { getImageUrl } from "@takeshape/routing";
+import { GraphQLClient } from 'graphql-request'
+export { gql } from 'graphql-request'
+export { getImageUrl } from '@takeshape/routing'
+
+// We provide a thin wrapper around a configured GraphQL client
 
 export class Client {
   constructor(endpoint, token) {
-    this.token = token;
-    this.endpoint = endpoint;
-  }
-  async graphql(query, variables) {
-    const res = await fetch(this.endpoint, {
-      method: "POST",
+    this.token = token
+    this.endpoint = endpoint
+    this.client = new GraphQLClient(this.endpoint, {
       headers: {
-        "Content-Type": "application/json",
         Authorization: `Bearer ${this.token}`,
       },
-      body: JSON.stringify({ query, variables }),
-    });
-    return await res.json();
+    })
+  }
+  async graphql(query, variables) {
+    return this.client.request(query, variables)
   }
 }
 
-export default new Client(
-  process.env.TAKESHAPE_ENDPOINT,
-  process.env.TAKESHAPE_TOKEN
-);
+// We create and provide a singleton TakeShape client as our default export
+let ts
+function createClient() {
+  if (!ts) {
+    ts = new Client(
+      process.env.TAKESHAPE_ENDPOINT,
+      process.env.TAKESHAPE_TOKEN
+    )
+  }
+  return ts
+}
+export default createClient()

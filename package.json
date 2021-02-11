@@ -10,10 +10,15 @@
   },
   "dependencies": {
     "@takeshape/routing": "^5.28.0",
+    "graphql": "^15.5.0",
+    "graphql-request": "^3.4.0",
     "next": "^10.0.1",
     "react": "17.0.0",
     "react-dom": "17.0.0",
     "shopify-buy": "^2.11.0"
   },
-  "graphql": ".graphqlconfig"
+  "graphql": ".graphqlconfig",
+  "devDependencies": {
+    "@takeshape/cli": "^6.8.0"
+  }
 }
