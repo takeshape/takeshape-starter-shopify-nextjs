@@ -59,7 +59,7 @@ export async function getStaticProps() {
   const res = {
     props: {
       data: null,
-      errors: []
+      errors: null
     } 
   };
   try {
@@ -104,7 +104,7 @@ export async function getStaticProps() {
     res.props.data = await TakeShape.graphql(query);
   } catch (error) {
     console.error(error);
-    res.props.errors = [error];
+    res.props.errors = [error.message];
   }
   return res;
 }
