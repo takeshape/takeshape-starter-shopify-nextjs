@@ -1,6 +1,10 @@
-.cart {
+.cart, .openCart {
   display: flex;
   align-items: center;
+}
+
+.openCart:hover {
+  opacity: 0.6;
 }
 
 .counter {
@@ -40,6 +44,36 @@
 .checkout:hover,
 .checkout:focus {
   opacity: 0.8;
+}
+
+.cartDetail {
+  position: absolute;
+  width: 20rem;
+  right: 1rem;
+  top: 3rem;
+  padding: 1rem;
+  background: white;
+  border: solid black 2px;
+}
+
+.closeCartDetail {
+  position: absolute;
+  font-size: 1.5rem;
+  top: 0;
+  right: 6px;
+  font-weight: bold;
+}
+
+.cartDetailTitleRow {
+  margin: 0 0 .5rem;
+}
+
+.cartDetailTitle {
+  font-weight: bold;
+}
+
+.cartDetailRow:not(:last-child) {
+  padding: 0 0 1rem;
 }
 
 .disabled {
