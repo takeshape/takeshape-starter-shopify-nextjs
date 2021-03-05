@@ -30,13 +30,13 @@ To learn more and get started:
 
 3. In your new TakeShape project, connect to your Shopify account.
 
-   - Click on the project name in the upper left > Schema > Connect Service.
+   - Go to the Schema tab, then click "Connect Service".
    - Provide the URL of your Shopify store, then click save. You'll be taken through an OAuth flow to authorize the TakeShape app with your Shopify account.
 
 4. Create an API Key with `Dev` permissions in your TakeShape project.
 
-   - Click on the project name in the upper left > API Keys > New API Key. Save your
-     new API key somewhere.
+   - Go to the API tab, then find API Keys in the navigation sidebar. Select "New API Key". Copy your
+     new API key to a secure text document.
    - Copy and save the API endpoint provided on the API Keys page. It looks like this:
      `https://api.takeshape.io/project/<your project ID>/v3/graphql`
 
@@ -76,11 +76,12 @@ You can install a GraphQL extension for your code editor and use it with your Ta
 - If you're using VSCode, we recommend using [the official GraphQL extension](https://marketplace.visualstudio.com/items?itemName=GraphQL.vscode-graphql).
 - If you're using JetBrains, we recommend using [graphql-config](https://graphcool.github.io/graphql-config/).
 
-First, install the TakeShape CLI and run the `init` command in the project root:
+First, install the TakeShape CLI, login, and run the `link` command in the project root:
 
 ```bash
 npm i -g @takeshape/cli
-takeshape init
+takeshape login
+takeshape link
 ```
 
 This will download a `.graphql` file with your project's types and queries. This will power features like validation, autocomplete suggestions, and built-in definitions.
