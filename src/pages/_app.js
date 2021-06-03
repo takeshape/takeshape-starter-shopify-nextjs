@@ -63,7 +63,13 @@ function MyApp({ Component, pageProps }) {
 
     if (existingCheckoutId) {
       client.checkout.fetch(existingCheckoutId).then(checkout => {
-        initCheckout(checkout, setCheckoutId, setCheckoutUrl, setCart);
+        if (checkout !== null) {
+          initCheckout(checkout, setCheckoutId, setCheckoutUrl, setCart);
+        } else {
+          client.checkout.create().then(checkout => {
+            initCheckout(checkout, setCheckoutId, setCheckoutUrl, setCart);
+          });
+        }
       });
     } else {
       client.checkout.create().then(checkout => {
