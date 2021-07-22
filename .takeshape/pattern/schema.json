@@ -1159,5 +1159,6 @@
         "endpoint": "https://takeshape-io-shop.myshopify.com/admin/api/2020-07/graphql.json"
       }
     }
-  }
+  },
+  "dataKey": ""
 }
