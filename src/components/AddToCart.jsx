@@ -1,4 +1,4 @@
-import React, { useContext } from "react";
+import React, { useContext, useCallback, useMemo } from "react";
 import CartContext from '../context/CartContext'
 
 function addToCart(products, quantity, shopify, checkoutId, setCart) {
@@ -15,10 +15,14 @@ function addToCart(products, quantity, shopify, checkoutId, setCart) {
 
 const AddToCart = ({ products, label = "Add to cart"}) => {
   const { shopify, checkoutId, setCart } = useContext(CartContext);
-
-  const onClickHandler = () => addToCart(products, 1, shopify, checkoutId, setCart);
+  const isDisabled = useMemo(() => shopify === null || checkoutId === null, [shopify, checkoutId]);
+  const onClickHandler = useCallback(() => {
+    if (!isDisabled) {
+      addToCart(products, 1, shopify, checkoutId, setCart)
+    }
+  }, [products, isDisabled, shopify, checkoutId, setCart]);
   return (
-    <button className="button" onClick={onClickHandler}>
+    <button disabled={isDisabled} className="button" onClick={onClickHandler}>
       {label}
     </button>
   );
