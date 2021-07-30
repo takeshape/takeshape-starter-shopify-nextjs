@@ -33,7 +33,6 @@ export default function useShopifyCart() {
   });
 
   const initCheckout = useCallback((checkout) => {
-    console.log(checkout);
     try {
       localStorage.setItem('shopifyCheckoutId', checkout.id);
     } catch (e) {

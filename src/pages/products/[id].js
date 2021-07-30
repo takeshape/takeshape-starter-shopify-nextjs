@@ -88,7 +88,7 @@ export async function getStaticPaths() {
   try {
     const query = gql`
       query {
-        products: getProductList {
+        products: getProductList(onlyEnabled: false) {
           items {
             _id
           }
