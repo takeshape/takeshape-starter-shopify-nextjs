@@ -6,7 +6,7 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "setup": "open https://app.takeshape.io/add-to-takeshape?repo=https://github.com/takeshape/takeshape-starter-shopify-nextjs/tree/trunk/.takeshape/pattern"
+    "setup": "open https://app.takeshape.io/add-to-takeshape?repo=https://github.com/takeshape/patterns/tree/main/shopify-lookbook"
   },
   "dependencies": {
     "@takeshape/routing": "^5.28.0",

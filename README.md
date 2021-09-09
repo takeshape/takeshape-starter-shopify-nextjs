@@ -7,7 +7,7 @@ This project shows off how connecting [Shopify](https://shopify.com) with [TakeS
 To learn more and get started:
 
 1. Explore the repo and copy it to your own GitHub account
-2. Deploy this project to [TakeShape](https://app.takeshape.io/add-to-takeshape?repo=https://github.com/takeshape/takeshape-starter-shopify-nextjs/tree/trunk/.takeshape/pattern) and [Vercel](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Ftakeshape%2Ftakeshape-starter-shopify-nextjs&env=TAKESHAPE_TOKEN,TAKESHAPE_ENDPOINT&envDescription=Provide%20credentials%20for%20your%20TakeShape%20project&demo-title=Lookbook&demo-description=A%20statically-generated%20site%20using%20Next.js%2C%20showing%20off%20data%20from%20a%20TakeShape%20project%20connected%20to%20Shopify.&demo-url=https%3A%2F%2Fshape-shop-next.vercel.app%2F)
+2. Deploy this project to [TakeShape](https://app.takeshape.io/add-to-takeshape?repo=https://github.com/takeshape/patterns/tree/main/shopify-lookbook) and [Vercel](https://vercel.com/new/git/external?repository-url=https%3A%2F%2Fgithub.com%2Ftakeshape%2Ftakeshape-starter-shopify-nextjs&env=TAKESHAPE_TOKEN,TAKESHAPE_ENDPOINT&envDescription=Provide%20credentials%20for%20your%20TakeShape%20project&demo-title=Lookbook&demo-description=A%20statically-generated%20site%20using%20Next.js%2C%20showing%20off%20data%20from%20a%20TakeShape%20project%20connected%20to%20Shopify.&demo-url=https%3A%2F%2Fshape-shop-next.vercel.app%2F)
 3. [Read our walkthrough](https://www.takeshape.io/articles/building-a-rich-e-commerce-experience-on-the-jamstack-with-takeshape-shopify-and-next-js/) to learn how we built this project from scratch
 
 ## Quickstart
@@ -22,7 +22,7 @@ To learn more and get started:
 
 2. Next, set up your TakeShape project. Use the deploy button or the package's `setup` script.
 
-   <a href="https://app.takeshape.io/add-to-takeshape?repo=https://github.com/takeshape/takeshape-starter-shopify-nextjs/tree/main/.takeshape/pattern"><img alt="Deploy To TakeShape" src="https://camo.githubusercontent.com/1b580e3ce353d235bde0f376ca35b0fb26d685f3750a3013ae4b225dd3aaf344/68747470733a2f2f696d616765732e74616b6573686170652e696f2f32636363633832352d373062652d343331632d396261302d3130616233386563643361372f6465762f38653266376264612d306530382d346564652d613534362d3664663539626536613862622f4465706c6f79253230746f25323054616b65536861706525343032782e706e673f6175746f3d666f726d6174253243636f6d7072657373" width="205" height="38" data-canonical-src="https://images.takeshape.io/2cccc825-70be-431c-9ba0-10ab38ecd3a7/dev/8e2f7bda-0e08-4ede-a546-6df59be6a8bb/Deploy%20to%20TakeShape%402x.png?auto=format%2Ccompress" style="max-width:100%;"></a>
+   <a href="https://app.takeshape.io/add-to-takeshape?repo=https://github.com/takeshape/patterns/tree/main/shopify-lookbook"><img alt="Deploy To TakeShape" src="https://camo.githubusercontent.com/1b580e3ce353d235bde0f376ca35b0fb26d685f3750a3013ae4b225dd3aaf344/68747470733a2f2f696d616765732e74616b6573686170652e696f2f32636363633832352d373062652d343331632d396261302d3130616233386563643361372f6465762f38653266376264612d306530382d346564652d613534362d3664663539626536613862622f4465706c6f79253230746f25323054616b65536861706525343032782e706e673f6175746f3d666f726d6174253243636f6d7072657373" width="205" height="38" data-canonical-src="https://images.takeshape.io/2cccc825-70be-431c-9ba0-10ab38ecd3a7/dev/8e2f7bda-0e08-4ede-a546-6df59be6a8bb/Deploy%20to%20TakeShape%402x.png?auto=format%2Ccompress" style="max-width:100%;"></a>
 
    ```console
    $ npm run setup
